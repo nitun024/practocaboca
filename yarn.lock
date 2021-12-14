@@ -2507,6 +2507,11 @@
     "utils-merge" "1.0.1"
     "vary" "~1.1.2"
 
+"expression-calculator@^1.0.8":
+  "integrity" "sha512-v3/q+CD4KCl6pjKgcPBh0zbWg/sBWItO6ZlFJnCyP+wYPQ7XY5eHg8mxG7bfiznJdSblCOzjEOH1c7ThZUxNug=="
+  "resolved" "https://registry.npmjs.org/expression-calculator/-/expression-calculator-1.0.8.tgz"
+  "version" "1.0.8"
+
 "extend-shallow@^2.0.1":
   "integrity" "sha1-Ua99YUrZqfYQ6huvu5idaxxWiQ8="
   "resolved" "https://registry.npmjs.org/extend-shallow/-/extend-shallow-2.0.1.tgz"
