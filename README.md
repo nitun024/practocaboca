@@ -4,6 +4,14 @@
 - Handles the basic operations, +, -, * and /
 - Works with parenthesis in the expression
 
+#### _Requirements_ 
+ - `npm` should be installed 
+ - Latest code from the `master` branch is available at your machine
+
+### Install NestJS modules
+```sh
+npm install nestjs
+```
 
 ### In order to start the service on the local
 ```sh
