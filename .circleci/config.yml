@@ -9,7 +9,9 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          command: npm run test, npm run test:e2e
+          command: npm run test
+      - run:
+          command: npm run test:e2e
       - store_test_results:
           path: test-results
       
