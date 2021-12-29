@@ -10,14 +10,10 @@ jobs:
       - node/install-packages
       - run:
           command: npm run test
-<<<<<<< HEAD
-=======
       - run:
           command: npm run test:e2e
       - store_test_results:
-          path: test-results
-      
->>>>>>> 82d97f2... Updated config.yml
+          path: test-results      
 workflows:
   build-and-test:
     jobs:
