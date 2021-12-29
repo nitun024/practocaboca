@@ -11,12 +11,9 @@ jobs:
       - run:
           command: npm run test
       - run:
-          command: npm run test:e2e
-      - store_artifacts:
-          path: ~/project/test-results.xml
-          destination: test-results    
+          command: npm run test:e2e   
       - store_test_results:
-          path: ~/project/test-results      
+          path: test      
 workflows:
   build-and-test:
     jobs:
