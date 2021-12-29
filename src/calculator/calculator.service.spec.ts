@@ -122,4 +122,9 @@ describe('CalculatorService', () => {
     expect(service.calculate(expression)).toBe('Invalid Expression');
   });
 
+  it('should fail', async () => {
+    expect(2).toBe(4);
+  });
+
+
 });
