@@ -12,8 +12,17 @@ jobs:
           command: npm run test
       - run:
           command: npm run test:e2e   
-      - store_test_results:
-          path: test      
+      - run:
+          name: Trigger the Integ Test Job
+          command: |
+            printf "Triggering a build on the master branch\n\n"
+
+            BUILD_INFO=$(curl --location --request POST 'https://circleci.com/api/v2/project/github/nitun024/tocaboca-integ-tests/pipeline' \
+            --header 'circle-token: d0a960696b219146d118f39543715d41d5fbcdbd' \
+            --header 'Cookie: ring-session=xO6aQK4lUoICsdkFYrF1IbyVP2LV8MMjfkc3GYi34w4Megjmu4bqfCUKxi59mn%2Bv2ddVPBc4Hl6WgnVYtcMPC75Ka%2B6LhF65ac%2F6ZPec2b0b19EFbrx%2FE%2BCCNw9wkepFxYuaV6s7QlEbQAWTDqVTI91Xc2bD0Ok%2BnZ8UW9ntGR9%2BYpX0s4RWUWUUKrO0pK7oJLrQYEzEplh%2FfbpkW6vSl5LoJ0LHugk4OMWXwkuXxXI%3D--mnWQGJyW0jCHwq58Cq5hIIu9eIycUf4xckeRJwpKJH4%3D' \
+            --data-raw '{\"branch\":\"master\",\"parameters\":{}}')
+
+            printf "\n\nBuild triggered\n\n"   
 workflows:
   build-and-test:
     jobs:
