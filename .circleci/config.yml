@@ -3,7 +3,6 @@ orbs:
   node: circleci/node@3.0.0
 jobs:
   build-and-test:
-    working_directory: ~/my-app
     executor:
       name: node/default
     steps:
@@ -14,7 +13,7 @@ jobs:
       - run:
           command: npm run test:e2e
       - store_test_results:
-          path: ~/my-app/tmp/test-results      
+          path: /home/circleci/project/test-results      
 workflows:
   build-and-test:
     jobs:
