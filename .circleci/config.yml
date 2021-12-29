@@ -13,7 +13,7 @@ jobs:
       - run:
           command: npm run test:e2e
       - store_test_results:
-          path: test-results      
+          path: /tmp/test-results      
 workflows:
   build-and-test:
     jobs:
