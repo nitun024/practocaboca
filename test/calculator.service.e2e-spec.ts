@@ -30,6 +30,13 @@ describe('Calculator', () => {
         expect(response.text).toEqual('72');
     });
 
+    it(`should fail`,  async () => {
+      const expression = '(5*(3+1)-2)*(3+1)';
+      const response = await request(app.getHttpServer()).get('/'+expression);
+        expect(response.status).toBe(200);
+        expect(response.text).toEqual('33');
+    });
+
     it(`should return invalid expression`,  async () => {
       const expression = '(5())';
       const response = await request(app.getHttpServer()).get('/'+expression);
