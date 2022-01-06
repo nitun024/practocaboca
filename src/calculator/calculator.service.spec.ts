@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CalculatorService } from './calculator.service';
 import { AppController } from '../app.controller';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { InMemoryDBModule } from '@nestjs-addons/in-memory-db';
+
 
 describe('CalculatorService', () => {
   let service: CalculatorService;
@@ -8,6 +11,13 @@ describe('CalculatorService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [CalculatorService],
+      imports: [
+        EventEmitterModule.forRoot({
+          newListener: true,
+          ignoreErrors: false
+        }),
+        InMemoryDBModule.forRoot(),
+      ]
     }).compile();
 
     service = module.get<CalculatorService>(CalculatorService);

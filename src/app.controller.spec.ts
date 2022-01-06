@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { CalculatorService } from './calculator/calculator.service';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { InMemoryDBModule } from '@nestjs-addons/in-memory-db';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -16,6 +18,13 @@ describe('AppController', () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       providers: [ApiServiceProvider],
+      imports: [
+        EventEmitterModule.forRoot({
+          newListener: true,
+          ignoreErrors: false
+        }),
+        InMemoryDBModule.forRoot(),
+      ]
     }).compile();
     appController = app.get<AppController>(AppController);
     spyService = app.get<CalculatorService>(CalculatorService);
@@ -50,6 +59,13 @@ describe('Invalid AppController', () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       providers: [ApiServiceProvider],
+      imports: [
+        EventEmitterModule.forRoot({
+          newListener: true,
+          ignoreErrors: false
+        }),
+        InMemoryDBModule.forRoot(),
+      ]
     }).compile();
     appController = app.get<AppController>(AppController);
     spyService = app.get<CalculatorService>(CalculatorService);
