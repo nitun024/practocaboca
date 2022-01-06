@@ -3,7 +3,6 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { CalculatorService } from '../src/calculator/calculator.service';
 import { INestApplication } from '@nestjs/common';
-import { waitForDebugger } from 'inspector';
 
 describe('Calculator', () => {
     let app: INestApplication;
@@ -28,6 +27,21 @@ describe('Calculator', () => {
       const response = await request(app.getHttpServer()).get('/calculate/'+expression);
         expect(response.status).toBe(200);
         expect(response.text).toEqual('72');
+    });
+
+    it(`should store calculated expressions in db`,  async () => {
+      var expression1 = '(5*(3+1)-2)*(3+1)';
+      var expression2 = '2*2';
+      var expression3 = '0/0';
+      var response = await request(app.getHttpServer()).get('/calculate/'+expression1);
+      response = await request(app.getHttpServer()).get('/calculate/'+expression2);
+      response = await request(app.getHttpServer()).get('/calculate/'+expression3);
+      expect(response.status).toBe(200);
+      response = await request(app.getHttpServer()).get('/history/1');
+      expect(response.status).toBe(200);
+      expect(response.text).toContain(expression1);
+      expect(response.text).toContain(expression2);
+      expect(response.text).toContain(expression3);
     });
 
     it(`should return invalid expression`,  async () => {
